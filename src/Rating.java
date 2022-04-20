@@ -32,18 +32,28 @@ public class Rating {
 
     public int getAmountRatings(int stars){
         int sumOfSpecificRating = 0;
-        sumOfSpecificRating = stars * ratings.get(stars);
-        return sumOfSpecificRating;
+        if(stars >= 0 && stars <= 5){
+            sumOfSpecificRating = stars * ratings.get(stars);
+            return sumOfSpecificRating;
+        }
+        else {
+            return 0;
+        }
     }
 
     public float getAverageRating(){
         int numberOfRatings = 0;
         float averageOfRatings;
-        for (int value: ratings.values()) {
-            numberOfRatings += value;
+        if(!ratings.isEmpty()){
+            for (int value: ratings.values()) {
+                numberOfRatings += value;
+            }
+            averageOfRatings = (float)getAmountRatings() / numberOfRatings;
+            return averageOfRatings;
         }
-        averageOfRatings = (float)getAmountRatings() / numberOfRatings;
-        return averageOfRatings;
+        else{
+            return -1;
+        }
     }
 
 }
